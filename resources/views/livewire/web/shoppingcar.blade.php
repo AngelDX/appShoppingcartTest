@@ -52,11 +52,11 @@
                             <div>
                                 <div class="flex justify-between text-base font-medium text-gray-900">
                                     <h3 class="font-bold text-lg"><a href="#">{{$details['nombre']}}</a></h3>
-                                    <p class="ml-4">${{ $details['precio'] }}</p>
+                                    <p class="ml-4">S/ {{ $details['precio'] }}</p>
                                 </div>
                                 <div class="flex justify-between text-base font-medium text-gray-900 mt-6">
                                     <p class="text-sm text-gray-500">Subtotal</p>
-                                    <p class="ml-4">${{ $details['subtotal'] }}</p>
+                                    <p class="ml-4">S/ {{ $details['subtotal'] }}</p>
                                 </div>
                                 {{-- <p class="mt-1 text-sm text-gray-500">Blue</p> --}}
                             </div>
@@ -84,7 +84,7 @@
               <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
                 <div class="flex justify-between text-base font-medium text-gray-900">
                   <p>Total</p>
-                  <p>{{$totalImporte}}</p>
+                  <p>S/  {{$totalImporte}}</p>
                 </div>
                 <p class="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                 <div class="mt-6">

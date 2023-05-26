@@ -19,7 +19,7 @@ class CategorySeeder extends Seeder
             'name'=>'Suculentas sin tallo'
         ]);
         Category::create([
-            'name'=>'Cactus o Suculentas con espinas'
+            'name'=>'Cactus'
         ]);
         Category::create([
             'name'=>'Suculentas colgantes'

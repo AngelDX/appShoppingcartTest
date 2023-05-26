@@ -16,10 +16,11 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('fullname');
             $table->text('description');
             $table->double('price',10,2);
             $table->integer('stock');
-            $table->integer('offer')->nullable();
+            $table->integer('discount')->default(0);
             $table->boolean('availability');
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');

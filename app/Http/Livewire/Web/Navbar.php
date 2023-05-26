@@ -9,7 +9,7 @@ class Navbar extends Component{
 
     Use CarTrait;
     public $totalCart=0;
-    protected $listeners=['sumarContador'];
+    protected $listeners=['actualizarContador'];
 
     public function mount(){
         $this->totalCart=$this->totalItems();

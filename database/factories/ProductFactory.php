@@ -19,9 +19,10 @@ class ProductFactory extends Factory
         $price=$this->faker->randomFloat(2,10,500);
         return [
             "name"=>$this->faker->word(),
+            "fullname"=>$this->faker->sentence(),
             "description"=>$this->faker->paragraph(),
-            "price"=>$price,
-            "offer"=>$price-5,
+            "price"=>$this->faker->randomFloat(2,10,500),
+            "discount"=>$this->faker->numberBetween(5,40),
             "stock"=>$this->faker->randomFloat(0,5,50),
             "availability"=>$this->faker->randomElement([false,true]),
             "category_id"=>Category::all()->random()->id,
