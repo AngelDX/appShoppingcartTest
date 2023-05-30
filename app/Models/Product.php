@@ -20,4 +20,11 @@ class Product extends Model{
     public function image(){
         return $this->morphOne(Image::class,'imageable');
     }
+
+    //Query scopes
+    public function scopeCategory($query,$category_id){
+        if($category_id){
+            return $query->where('category_id',$category_id);
+        }
+    }
 }

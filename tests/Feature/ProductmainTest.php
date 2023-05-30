@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -21,4 +22,14 @@ class ProductmainTest extends TestCase
         }
 
     }
+
+    public function test_view_categories(): void{
+        $categories=Category::all();
+        $response = $this->get('/');
+        $response->assertStatus(200);
+        foreach ($categories as $category) {
+            $response->assertSee($category->name);
+        }
+    }
+
 }
