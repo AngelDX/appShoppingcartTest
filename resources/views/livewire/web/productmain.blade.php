@@ -1,4 +1,5 @@
-<div class="grid">
+<div>
+    {{-- Filtros categoria --}}
     <div class="w-full mb-4">
         <div class="text-center border-b-2 border-gris-200 py-2">
             <h3 class="uppercase font-bold text-lg mb-2">Categorías</h3>
@@ -14,21 +15,21 @@
                 </li>
                 @endforeach
             </ul>
-            {{ $sendCategory }}
         </div>
     </div>
+    {{-- Cards productos categoria --}}
     <div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
             @forelse ($products as $product)
             <div class="relative scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
                 <div>
-                    <div class="absolute right-0 top-0 bg-red-600 text-white w-14 py-1 text-center rounded-tr-lg">
+                    <div class="absolute right-0 top-0 bg-red-600 text-white w-14 py-1 text-center rounded-tr-lg rounded-bl-lg">
                         -{{$product->discount}}%
                     </div>
                     <div class="grid lg:grid-cols-2 gap-4">
-                        <div class="w-full object-cover">
+                        <a href="{{ route('product.show',$product->id) }}" class="w-full object-cover">
                             <img src="{{Storage::url($product->image->url)}}">
-                        </div>
+                        </a>
                         <div>
                             <h2 class="text-xl font-semibold text-gray-900 dark:text-white">{{$product->name}}</h2>
                             <h3 class="mt-2 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">{{$product->fullname}}</h3>

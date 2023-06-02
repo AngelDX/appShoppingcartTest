@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+use Illuminate\Support\Str;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product>
  */
@@ -16,9 +16,10 @@ class ProductFactory extends Factory
      * @return array<string, mixed>
      */
     public function definition(): array {
-        $price=$this->faker->randomFloat(2,10,500);
+        $name=$this->faker->word();
         return [
-            "name"=>$this->faker->word(),
+            "name"=>$name,
+            "slug"=>Str::slug($name),
             "fullname"=>$this->faker->sentence(),
             "description"=>$this->faker->paragraph(),
             "price"=>$this->faker->randomFloat(2,10,500),

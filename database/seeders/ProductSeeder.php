@@ -13,7 +13,7 @@ class ProductSeeder extends Seeder
      * Run the database seeds.
      */
     public function run(): void{
-        $products=Product::factory(30)->create();
+        $products=Product::factory(50)->create();
         foreach ($products as $product) {
             Image::factory(1)->create([
                 'imageable_id'=>$product->id,

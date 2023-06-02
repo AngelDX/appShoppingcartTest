@@ -27,4 +27,14 @@ class Product extends Model{
             return $query->where('category_id',$category_id);
         }
     }
+
+    public function getRouteKeyName(){
+        return 'slug';
+    }
+
+    //Los accesores y mutadores
+    public function getPriceDiscountAttribute(){
+        return number_format($this->price-(($this->discount/100)*$this->price),2);
+    }
+
 }

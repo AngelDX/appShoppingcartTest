@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Web\Productshow;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('index');
 
 Route::middleware([
     'auth:sanctum',
@@ -25,4 +26,5 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+    Route::get('/productos/{producto}',[Productshow::class,'render'])->name('product.show');
 });
