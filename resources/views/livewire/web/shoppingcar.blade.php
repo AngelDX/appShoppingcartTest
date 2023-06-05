@@ -58,6 +58,7 @@
                                     <p class="text-sm text-gray-500">Subtotal</p>
                                     <p class="ml-4">S/ {{ $details['subtotal'] }}</p>
                                 </div>
+
                                 {{-- <p class="mt-1 text-sm text-gray-500">Blue</p> --}}
                             </div>
                             <div class="flex flex-1 items-end justify-between text-sm">

@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 })->name('index');
+Route::get('/productos/{id}',Productshow::class)->name('product.show');
 
 Route::middleware([
     'auth:sanctum',
@@ -26,5 +27,5 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-    Route::get('/productos/{producto}',[Productshow::class,'render'])->name('product.show');
+
 });

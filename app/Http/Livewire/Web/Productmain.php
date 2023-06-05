@@ -21,10 +21,10 @@ class Productmain extends Component{
         return view('livewire.web.productmain',compact('products','categories'));
     }
 
-    public function agregarProducto(Product $product){
+    public function agregarProducto($id){
+        $product=Product::find($id);
         $this->emit('actualizarContador');
         $this->emit('loadCart');
-        // $this->emit('actulizarTotalImporte');
         $this->agregar($product);
     }
 

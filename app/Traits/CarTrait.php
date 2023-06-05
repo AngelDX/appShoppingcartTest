@@ -16,9 +16,9 @@ trait CarTrait{
             $this->carro=[$producto->id=>[
                     "nombre"=>$producto->name,
                     "cantidad"=>1,
-                    "precio"=>$producto->price,
+                    "precio"=>$producto->price_discount,
                     "imagen"=>$producto->image->url,
-                    "subtotal"=>$producto->price
+                    "subtotal"=>$producto->price_discount
                 ]
             ];
         //Si el carro existe y el producto tambien, sumamos mas 1 la cantidad
@@ -29,9 +29,9 @@ trait CarTrait{
             $this->carro[$producto->id] = [
                 "nombre" =>$producto->name,
                 "cantidad"=>1,
-                "precio"=>$producto->price,
+                "precio"=>$producto->price_discount,
                 "imagen"=>$producto->image->url,
-                "subtotal"=>$producto->subtotal+$producto->price
+                "subtotal"=>$producto->subtotal+$producto->price_discount
             ];
         }
         session()->put('cart',$this->carro);

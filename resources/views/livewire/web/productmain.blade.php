@@ -41,7 +41,6 @@
                     </div>
                     <div class="mt-4 flex justify-between">
                         <div>
-                            <p class="text-xs text-gray-400">Valoración del producto</p>
                             <ul class="flex items-center cursor-pointer">
                                 <li class="mr-1">
                                     <i class="fas fa-star text-{{$rating >= 1 ? 'yellow' : 'gray'}}-400"></i>
@@ -59,8 +58,9 @@
                                     <i class="fas fa-star text-{{$rating == 5 ? 'yellow' : 'gray'}}-400"></i>
                                 </li>
                             </ul>
+                            <p class="text-xs text-gray-400">Valoración del producto</p>
                         </div>
-                        <button wire:click="agregarProducto({{$product}})" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-400">
+                        <button wire:click="agregarProducto({{$product->id}})" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-400">
                             <i class="fa-solid fa-cart-arrow-down text-yellow-400"></i> Agregar
                         </button>
                     </div>
