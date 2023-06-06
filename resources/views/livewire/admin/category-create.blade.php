@@ -1,5 +1,5 @@
 <div>
-    <x-dialog-modal>
+    <x-dialog-modal wire:model="isOpen">
       <x-slot name="title">
         <h3>Registro nueva categoría</h3>
       </x-slot>

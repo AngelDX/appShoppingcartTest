@@ -10,11 +10,13 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
          <!-- Scripts -->
          @vite(['resources/css/app.css', 'resources/js/app.js'])
          <!-- Styles -->
          @livewireStyles
-         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     </head>
     <body class="font-sans antialiased">
         <div class="sticky top-0 z-50">
@@ -28,29 +30,8 @@
                     </main>
                 </div>
             </div>
-
+            @livewire('footerweb')
         </div>
-        <footer class="bg-gray-800 text-center text-gray-200">
-            {{-- <div class="px-6 pt-3">
-                <div class="mb-3 flex justify-center">
-                    <a href="#!" class="flex items-center justify-center m-1 h-9 w-9 rounded-full border-2 border-gray-400 leading-normal text-gray-400 transition duration-150 ease-in-out hover:text-white hover:border-white focus:outline-none focus:ring-0">
-                        <i class="fa-brands fa-facebook-f"></i>
-                    </a>
-                    <a href="#!" class="flex items-center justify-center m-1 h-9 w-9 rounded-full border-2 border-gray-400 leading-normal text-gray-400 transition duration-150 ease-in-out hover:text-white hover:border-white focus:outline-none focus:ring-0">
-                        <i class="fa-brands fa-youtube"></i>
-                    </a>
-                    <a href="#!" class="flex items-center justify-center m-1 h-9 w-9 rounded-full border-2 border-gray-400 leading-normal text-gray-400 transition duration-150 ease-in-out hover:text-white hover:border-white focus:outline-none focus:ring-0">
-                        <i class="fa-brands fa-facebook-f"></i>
-                    </a>
-                    <a href="#!" class="flex items-center justify-center m-1 h-9 w-9 rounded-full border-2 border-gray-400 leading-normal text-gray-400 transition duration-150 ease-in-out hover:text-white hover:border-white focus:outline-none focus:ring-0">
-                        <i class="fa-brands fa-facebook-f"></i>
-                    </a>
-                </div>
-            </div> --}}
-            <div class="p-4 text-center">
-                ©2023 Copyright: JuliacaFlower
-            </div>
-        </footer>
         @stack('modals')
         @livewireScripts
         <script type="text/javascript">
@@ -63,5 +44,6 @@
             })
         </script>
         @stack('js')
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
     </body>
 </html>

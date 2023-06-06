@@ -15,7 +15,7 @@ class Productmain extends Component{
     use WithFileUploads;
     public $rating=5;
     public $sendCategory,$file;
-    public $isOpen=true;
+    public $isOpen=false;
 
     public function render(){
         //Consulta usando query scops
@@ -36,7 +36,7 @@ class Productmain extends Component{
     }
 
     public function create(){
-        //$this->isOpen=true;
+        $this->isOpen=true;
         //$this->reset(['empresa','file']);
         //$this->resetValidation();
     }
