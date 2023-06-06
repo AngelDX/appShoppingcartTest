@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Admin\CategoryCrud;
 use App\Http\Livewire\Web\Productshow;
 use Illuminate\Support\Facades\Route;
 
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 })->name('index');
-Route::get('/productos/{id}',Productshow::class)->name('product.show');
+Route::get('/productos/{product}',Productshow::class)->name('product.show');
 
 Route::middleware([
     'auth:sanctum',
@@ -27,5 +28,5 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-
+    Route::get('/categorias',CategoryCrud::class)->name('categories');
 });

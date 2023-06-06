@@ -10,8 +10,8 @@ class Productshow extends Component{
     Use CarTrait;
     public $product;
 
-    public function mount($id){
-        $this->product=Product::find($id);
+    public function mount(Product $product){
+        $this->product=$product;
     }
 
     public function render(){
