@@ -21,10 +21,9 @@
     <div>
         @auth
         <div class="mb-2 mr-5 relative">
-            <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="absolute right-2 top-[-60px] bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer" >
+            <button wire:click="create()" class="absolute right-2 top-[-60px] bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer" >
                 <i class="fa-solid fa-plus"></i> Agregar producto
             </button>
-            @include('livewire.web.product-create')
         </div>
         @endauth
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">

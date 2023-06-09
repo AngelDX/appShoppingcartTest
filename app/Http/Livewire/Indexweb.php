@@ -6,6 +6,8 @@ use Livewire\Component;
 
 class Indexweb extends Component
 {
+
+
     public function render()
     {
         return view('livewire.indexweb');

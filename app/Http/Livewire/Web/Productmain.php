@@ -16,6 +16,23 @@ class Productmain extends Component{
     public $rating=5;
     public $sendCategory,$file;
     public $isOpen=false;
+    public $product;
+
+    protected $rules=[
+        'product.name'=>'required',
+        'product.fullname'=>'required',
+        'product.description'=>'required',
+        'product.price'=>'required',
+        'product.stock'=>'required',
+        'product.discount'=>'required',
+        'product.availability'=>'required',
+        'product.category_id'=>'required',
+    ];
+
+    public function mount(){
+        $this->product["availability"]=true;
+        $this->product["discount"]=0;
+    }
 
     public function render(){
         //Consulta usando query scops
@@ -30,15 +47,19 @@ class Productmain extends Component{
         $this->emit('loadCart');
         $this->agregar($product);
     }
+
+    public function create(){
+        $this->isOpen=true;
+    }
+
     //Para resetear los filtros en el paginado
     public function updatingsendCategory(){
         $this->resetPage();
     }
 
-    public function create(){
-        $this->isOpen=true;
-        //$this->reset(['empresa','file']);
-        //$this->resetValidation();
+    public function store(){
+        $this->validate();
+        //dd($this->product);
     }
 
 }
