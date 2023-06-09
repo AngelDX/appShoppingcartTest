@@ -1,3 +1,4 @@
-<x-index-layout>
+<div>
+
     @livewire('web.productmain')
-</x-index-layout>
+</div>

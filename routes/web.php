@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // })->name('index');
-Route::get('/',[Indexweb::class,'render'])->name('index');
+Route::get('/',Indexweb::class)->name('index');
 Route::get('/productos/{product}',Productshow::class)->name('product.show');
 
 Route::middleware([
