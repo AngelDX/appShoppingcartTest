@@ -21,12 +21,9 @@
     <div>
         @auth
         <div class="mb-2 mr-5 relative">
-            <button wire:click="create()" class="absolute right-2 top-[-60px] bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer" >
+            <button onclick="Livewire.emit('openModal', 'admin.product-create')" class="absolute right-2 top-[-60px] bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer" >
                 <i class="fa-solid fa-plus"></i> Agregar producto
             </button>
-            @if($isOpen)
-                @include('livewire.web.product-create')
-            @endif
         </div>
         @endauth
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
