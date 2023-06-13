@@ -12,12 +12,18 @@ trait CarTrait{
     public function agregar($producto){
         $this->carro=session()->get('cart');
         //Si el carro esta vacio se agregar un nuevo producto
+        if(isset($producto->image->url)){
+            $imagen='storage/'.$producto->image->url;
+        }else{
+            $imagen="img/sinfoto.png";
+        }
+
         if(!$this->carro){
             $this->carro=[$producto->id=>[
                     "nombre"=>$producto->name,
                     "cantidad"=>1,
                     "precio"=>$producto->price_discount,
-                    "imagen"=>$producto->image->url,
+                    "imagen"=>$imagen,
                     "subtotal"=>$producto->price_discount
                 ]
             ];
@@ -30,7 +36,7 @@ trait CarTrait{
                 "nombre" =>$producto->name,
                 "cantidad"=>1,
                 "precio"=>$producto->price_discount,
-                "imagen"=>$producto->image->url,
+                "imagen"=>$imagen,
                 "subtotal"=>$producto->subtotal+$producto->price_discount
             ];
         }

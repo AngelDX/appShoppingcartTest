@@ -31,16 +31,25 @@
             </div>
             <div>
                 <div class="">
+
                     <div class="mr-2 mt-6">
-                            @if ($file)
-                                <img src="{{ $file->temporaryUrl() }}" class="object-cover">
+                        @if(isset($product['image']['url'])) {{-- caso editar --}}
+                            @if(substr($file,-3)!='tmp')
+                                <img src="{{'storage/'.$product['image']['url']}}">
                             @else
-                                <img src="/img/sinfoto.png" class="object-cover">
+                                <img src="{{$file->temporaryUrl()}}">
                             @endif
+                        @else {{-- caso nuevo --}}
+                            @if(substr($file,-3)!='tmp')
+                                <img src="img/sinfoto.png">
+                            @else
+                                <img src="{{$file->temporaryUrl()}}">
+                            @endif
+                        @endif
                         <div>
                             <input id="file" wire:model="file" class="w-full file:rounded-lg file:bg-gray-800 file:text-white file:font-semibold file:text-xs text-xs cursor-pointer" type="file" accept="image/png, image/jpeg">
                         </div>
-                        <div class="text-blue-500 font-bold mt-1" wire:loading wire:target="file">
+                        <div class="text-blue-500 font-bold mt-1 text-sm" wire:loading wire:target="file">
                             Cargando ...
                         </div>
                     </div>

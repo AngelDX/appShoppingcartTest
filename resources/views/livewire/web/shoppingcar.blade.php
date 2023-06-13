@@ -46,7 +46,7 @@
                       @foreach(session('cart') as $id => $details)
                         <li class="flex py-6">
                             <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                <img src="{{Storage::url($details['imagen'])}}" class="h-full w-full object-cover object-center">
+                                <img src="{{$details['imagen']}}" class="h-full w-full object-cover object-center">
                             </div>
                             <div class="ml-4 flex flex-1 flex-col">
                             <div>

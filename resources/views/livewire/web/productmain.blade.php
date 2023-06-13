@@ -35,7 +35,7 @@
                     </div>
                     <div class="grid lg:grid-cols-2 gap-4">
                         <a href="{{ route('product.show',$product) }}" class="w-full object-cover">
-                            <img src="{{Storage::url($product->image->url)}}">
+                            <img src="@if($product->image){{Storage::url($product->image->url)}}@else img/sinfoto.png @endif">
                         </a>
                         <div>
                             <h2 class="text-xl font-semibold text-gray-900 dark:text-white">{{$product->name}}</h2>
@@ -46,7 +46,7 @@
                             </div>
                             @auth
                             <div class="absolute top-2 left-2">
-                                <x-button wire:click="edit({{$product}})"><i class="fas fa-edit"></i></x-jet-button>
+                                <x-button onclick="Livewire.emit('openModal','admin.product-create',{{json_encode(['product'=>$product])}})"><i class="fas fa-edit"></i></x-jet-button>
                                 <x-danger-button wire:click="$emit('deleteItem',{{$product->id}})"><i class="fas fa-trash"></i></x-jet-danger-button>
                             </div>
                             @endauth
@@ -85,4 +85,30 @@
         </div>
         <div class="mt-2">{{$products->links()}}</div>
     </div>
+    <!--Scripts - Sweetalert   -->
+    @push('js')
+    <script>
+        Livewire.on('deleteItem',id=>{
+          Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                  Livewire.emitTo('web.productmain','delete',id);
+                  Swal.fire(
+                      'Deleted!',
+                      'Your file has been deleted.',
+                      'success'
+                  )
+
+              }
+            })
+        });
+      </script>
+      @endpush
 </div>
