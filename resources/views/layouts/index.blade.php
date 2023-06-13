@@ -16,7 +16,8 @@
          @vite(['resources/css/app.css', 'resources/js/app.js'])
          <!-- Styles -->
          @livewireStyles
-
+         <script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
+         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@latest/pace-theme-default.min.css">
     </head>
     <body class="font-sans antialiased">
         <div class="sticky top-0 z-50">

@@ -7,7 +7,7 @@ use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 
 class ProductCreate extends ModalComponent{
-    public $product;
+    public $product,$file;
     protected $rules=[
         'product.name'=>'required',
         'product.fullname'=>'required',
@@ -18,20 +18,11 @@ class ProductCreate extends ModalComponent{
         'product.availability'=>'required',
         'product.category_id'=>'required',
     ];
-    public static function modalMaxWidth(): string
-    {
-        // 'sm'
-        // 'md'
-        // 'lg'
-        // 'xl'
-        // '2xl'
-        // '3xl'
-        // '4xl'
-        // '5xl'
-        // '6xl'
-        // '7xl'
-        return '7xl';
+
+    public function mount(){
+        $this->product['availability']=true;
     }
+
     public function render(){
         $categories=Category::all();
         return view('livewire.admin.product-create',compact('categories'));
