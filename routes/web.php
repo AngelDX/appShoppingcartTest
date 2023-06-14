@@ -2,6 +2,7 @@
 
 use App\Http\Livewire\Admin\CategoryCrud;
 use App\Http\Livewire\Indexweb;
+use App\Http\Livewire\Web\ClientCreate;
 use App\Http\Livewire\Web\Productshow;
 use Illuminate\Support\Facades\Route;
 
