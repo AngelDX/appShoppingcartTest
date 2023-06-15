@@ -1,11 +1,10 @@
 <div class="py-5">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Categorías
+            Usuarios
         </h2>
     </x-slot>
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-4">
+    <x-card-main>
         <div class="flex items-center justify-between">
             <!--Input de busqueda   -->
             <div class="flex items-center p-2 rounded-md flex-1">
@@ -25,30 +24,42 @@
             </div>
         </div>
         <!--Tabla lista de items   -->
-        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-            <table class="w-full divide-y divide-gray-200 table-auto">
-              <thead class="bg-indigo-500 text-white">
-                <tr class="text-left text-xs font-bold  uppercase">
+        <div class="shadow border-b border-gray-200 sm:rounded-lg overflow-scroll sm:overflow-hidden">
+            <table class="w-full divide-y divide-gray-200 rounded-lg">
+              <thead class="bg-indigo-500 text-white rounded-lg">
+                <tr class="text-left text-xs font-bold uppercase rounded-lg">
                   <td scope="col" class="px-6 py-3">ID</td>
-                  <td scope="col" class="px-6 py-3">Nombre categoría</td>
+                  <td scope="col" class="px-6 py-3">Nombre</td>
+                  <td scope="col" class="px-6 py-3">Email</td>
+                  <td scope="col" class="px-6 py-3">Rol</td>
                   <td scope="col" class="px-6 py-3">Opciones</td>
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-200">
-                @foreach($categories as $item)
+                @foreach($users as $user)
                 <tr class="text-sm font-medium text-gray-900">
                   <td class="px-6 py-4">
                     <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-indigo-500 text-white">
-                      {{$item->id}}
+                      {{$user->id}}
                     </span>
                   </td>
-                  <td class="px-6 py-4">{{$item->name}}</td>
+                  <td class="px-6 py-4">{{$user->name}}</td>
+                  <td class="px-6 py-4">{{$user->email}}</td>
+                  <td class="px-6 py-4">
+                    @if (!empty($user->getRoleNames()))
+                        @foreach ($user->getRoleNames() as $rol)
+                            <p><span class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
+                                {{$rol}}</span>
+                            </p>
+                        @endforeach
+                    @endif
+                  </td>
                   <td class="px-6 py-4 text-right">
                     {{-- @livewire('cliente-edit',['cliente'=>$item],key($item->id)) --}}
-                    <x-button wire:click="edit({{$item}})"> <!-- Usamos metodos magicos -->
+                    <x-button wire:click="edit({{$user}})"> <!-- Usamos metodos magicos -->
                         <i class="fas fa-edit"></i>
                     </x-button>
-                    <x-danger-button wire:click="$emit('deleteItem',{{$item->id}})"> <!-- Usamos metodos magicos -->
+                    <x-danger-button wire:click="$emit('deleteItem',{{$user->id}})"> <!-- Usamos metodos magicos -->
                         <i class="fas fa-trash"></i>
                     </x-danger-button>
                   </td>
@@ -57,43 +68,13 @@
               </tbody>
             </table>
         </div>
-        @if(!$categories->count())
+        @if(!$users->count())
             No existe ningun registro conincidente
         @endif
-        @if($categories->hasPages())
+        @if($users->hasPages())
         <div class="px-6 py-3">
-            {{$categories->links()}}
+            {{$users->links()}}
         </div>
         @endif
-
-        </div>
-      </div>
-
-      <!--Scripts - Sweetalert   -->
-      @push('js')
-        <script>
-          Livewire.on('deleteItem',id=>{
-            Swal.fire({
-              title: 'Are you sure?',
-              text: "You won't be able to revert this!",
-              icon: 'warning',
-              showCancelButton: true,
-              confirmButtonColor: '#3085d6',
-              cancelButtonColor: '#d33',
-              confirmButtonText: 'Yes, delete it!'
-              }).then((result) => {
-                if (result.isConfirmed) {
-                    //console.log(id);
-                    Livewire.emitTo('admin.category-crud','delete',id);
-                    Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
-                    )
-
-                }
-              })
-          });
-        </script>
-      @endpush
+    </x-card-main>
 </div>

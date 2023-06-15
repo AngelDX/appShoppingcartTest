@@ -1,11 +1,10 @@
 <div class="py-5">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Categorías
+            Roles
         </h2>
     </x-slot>
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-4">
+    <x-card-main>
         <div class="flex items-center justify-between">
             <!--Input de busqueda   -->
             <div class="flex items-center p-2 rounded-md flex-1">
@@ -30,25 +29,47 @@
               <thead class="bg-indigo-500 text-white">
                 <tr class="text-left text-xs font-bold  uppercase">
                   <td scope="col" class="px-6 py-3">ID</td>
-                  <td scope="col" class="px-6 py-3">Nombre categoría</td>
+                  <td scope="col" class="px-6 py-3">Nombre</td>
+                  <td scope="col" class="px-6 py-3">Permisos</td>
                   <td scope="col" class="px-6 py-3">Opciones</td>
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-200">
-                @foreach($categories as $item)
+                @foreach($roles as $role)
                 <tr class="text-sm font-medium text-gray-900">
-                  <td class="px-6 py-4">
-                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-indigo-500 text-white">
-                      {{$item->id}}
-                    </span>
-                  </td>
-                  <td class="px-6 py-4">{{$item->name}}</td>
-                  <td class="px-6 py-4 text-right">
+                    <td class="px-6 py-4">
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-indigo-500 text-white">
+                        {{$role->id}}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4">{{$role->name}}</td>
+                    <td class="px-6 py-4">
+                        {{-- dropdown categorias --}}
+                        <div x-data="{ open: false }" class="mr-4">
+                            @if (count($role->permissions)>=1)
+                                <button x-on:click="open=true" class="px-4 text-gray-700 block h-12 rounded-lg overflow-hidden focus:outline-none bg-white shadow">
+                                    Permisos <i class="fas fa-angle-down"></i>
+                                </button>
+                                <div x-show="open" x-on:click.away="open=false" class="flex z-50 left-0 w-38 mt-1 bg-white border rounded shadow-xl">
+                                    @foreach ($role->permissions as $permission)
+                                        <span class="text-sm border-t-2 transition-colors duration-200 block px-4 py-2 text-gray-900 rounded hover:bg-indigo-200">
+                                            {{$permission->name}}
+                                        </span>
+                                    @endforeach
+                                </div>
+                            @else
+                                <button class="px-4 text-gray-700 block h-12 rounded-lg overflow-hidden focus:outline-none bg-white shadow">
+                                    Sin permisos
+                                </button>
+                            @endif
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 text-right">
                     {{-- @livewire('cliente-edit',['cliente'=>$item],key($item->id)) --}}
-                    <x-button wire:click="edit({{$item}})"> <!-- Usamos metodos magicos -->
+                    <x-button wire:click="edit({{$role}})"> <!-- Usamos metodos magicos -->
                         <i class="fas fa-edit"></i>
                     </x-button>
-                    <x-danger-button wire:click="$emit('deleteItem',{{$item->id}})"> <!-- Usamos metodos magicos -->
+                    <x-danger-button wire:click="$emit('deleteItem',{{$role->id}})"> <!-- Usamos metodos magicos -->
                         <i class="fas fa-trash"></i>
                     </x-danger-button>
                   </td>
@@ -57,43 +78,13 @@
               </tbody>
             </table>
         </div>
-        @if(!$categories->count())
+        @if(!$roles->count())
             No existe ningun registro conincidente
         @endif
-        @if($categories->hasPages())
+        @if($roles->hasPages())
         <div class="px-6 py-3">
-            {{$categories->links()}}
+            {{$roles->links()}}
         </div>
         @endif
-
-        </div>
-      </div>
-
-      <!--Scripts - Sweetalert   -->
-      @push('js')
-        <script>
-          Livewire.on('deleteItem',id=>{
-            Swal.fire({
-              title: 'Are you sure?',
-              text: "You won't be able to revert this!",
-              icon: 'warning',
-              showCancelButton: true,
-              confirmButtonColor: '#3085d6',
-              cancelButtonColor: '#d33',
-              confirmButtonText: 'Yes, delete it!'
-              }).then((result) => {
-                if (result.isConfirmed) {
-                    //console.log(id);
-                    Livewire.emitTo('admin.category-crud','delete',id);
-                    Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
-                    )
-
-                }
-              })
-          });
-        </script>
-      @endpush
+    </x-card-main>
 </div>

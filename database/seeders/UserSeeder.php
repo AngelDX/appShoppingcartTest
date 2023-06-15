@@ -19,7 +19,8 @@ class UserSeeder extends Seeder
             'email'=>'angel.condori@gmail.com',
             'password'=>bcrypt('12345678')
         ]);
-        //$user->assignRole('Administrador');php
+
+        $user->assignRole('Administrador');
 
     }
 }
