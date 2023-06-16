@@ -5,6 +5,7 @@
         </h2>
     </x-slot>
     <x-card-main>
+        {{$usuario}}
         <div class="flex items-center justify-between">
             <!--Input de busqueda   -->
             <div class="flex items-center p-2 rounded-md flex-1">
@@ -50,9 +51,9 @@
                                 <button x-on:click="open=true" class="px-4 text-gray-700 block h-12 rounded-lg overflow-hidden focus:outline-none bg-white shadow">
                                     Permisos <i class="fas fa-angle-down"></i>
                                 </button>
-                                <div x-show="open" x-on:click.away="open=false" class="flex z-50 left-0 w-38 mt-1 bg-white border rounded shadow-xl">
+                                <div x-show="open" x-on:click.away="open=false" class="flex flex-wrap z-50 left-0 mt-1 bg-indigo-50 border rounded shadow-xl">
                                     @foreach ($role->permissions as $permission)
-                                        <span class="text-sm border-t-2 transition-colors duration-200 block px-4 py-2 text-gray-900 rounded hover:bg-indigo-200">
+                                        <span class="text-xs border-t-2 transition-colors duration-200 block px-4 py-2 text-gray-900 rounded hover:bg-indigo-200">
                                             {{$permission->name}}
                                         </span>
                                     @endforeach

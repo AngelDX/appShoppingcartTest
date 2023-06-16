@@ -4,7 +4,6 @@ use App\Http\Livewire\Admin\CategoryCrud;
 use App\Http\Livewire\Admin\RoleManagement;
 use App\Http\Livewire\Admin\UserManagement;
 use App\Http\Livewire\Indexweb;
-use App\Http\Livewire\Web\ClientCreate;
 use App\Http\Livewire\Web\Productshow;
 use Illuminate\Support\Facades\Route;
 
@@ -33,7 +32,7 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-    Route::get('/categorias',CategoryCrud::class)->name('categories');
-    Route::get('/roles',RoleManagement::class)->name('roles');
-    Route::get('/users',UserManagement::class)->name('users');
+    //Route::get('/categorias',CategoryCrud::class)->name('categories');
+    //Route::get('/roles',RoleManagement::class)->name('roles');
+    //Route::get('/users',UserManagement::class)->name('users');
 });

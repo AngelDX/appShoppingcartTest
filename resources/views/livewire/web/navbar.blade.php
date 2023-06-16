@@ -78,7 +78,7 @@
             <!-- Active: "bg-gray-100", Not Active: "" -->
             @if (Route::has('login'))
                 @auth
-                    <a href="{{ url('/dashboard') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Dashboard</a>
+                    <a href="{{ url('/dashboard') }}" target="_blank" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Dashboard</a>
                     @else
                     <a href="{{ route('login') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Login</a>
                     @if (Route::has('register'))

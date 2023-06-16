@@ -25,17 +25,17 @@
                             <i class="fas fa-angle-down text-sm"></i>
                         </div>
                         <div x-show="open" x-on:click.away="open=false" class="absolute right-0 w-38 mt-28 bg-white border rounded shadow-xl">
-                            <a href="{{ route('roles') }}" x-on:click="open=false" class="text-sm border-t-2 transition-colors duration-200 block px-4 py-2 text-gray-900 rounded hover:bg-indigo-200 cursor-pointer">
+                            <a href="{{ route('admin.roles') }}" x-on:click="open=false" class="text-sm border-t-2 transition-colors duration-200 block px-4 py-2 text-gray-900 rounded hover:bg-indigo-200 cursor-pointer">
                                 Roles
                             </a>
-                            <a href="{{ route('users') }}" x-on:click="open=false" class="text-sm border-t-2 transition-colors duration-200 block px-4 py-2 text-gray-900 rounded hover:bg-indigo-200 cursor-pointer">
+                            <a href="{{ route('admin.users') }}" x-on:click="open=false" class="text-sm border-t-2 transition-colors duration-200 block px-4 py-2 text-gray-900 rounded hover:bg-indigo-200 cursor-pointer">
                                 Usuarios
                             </a>
                         </div>
                     </x-nav-link-down>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="{{ route('categories') }}" :active="request()->routeIs('categories')">
+                    <x-nav-link href="{{ route('admin.categories') }}" :active="request()->routeIs('categories')">
                         <i class="fa-solid fa-sitemap mr-1"></i>
                         {{ __('Categorías') }}
                     </x-nav-link>
