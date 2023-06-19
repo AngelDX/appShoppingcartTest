@@ -8,6 +8,6 @@ class Indexweb extends Component{
 
 
     public function render(){
-        return view('livewire.indexweb')->layout('layouts.index');;
+        return view('livewire.indexweb')->layout('layouts.index');
     }
 }

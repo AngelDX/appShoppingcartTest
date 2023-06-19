@@ -1,3 +1,11 @@
-.titulo1{
-    @apply font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight
+.card{
+    @apply bg-white shadow-lg rounded-lg overflow-hidden;
+}
+
+.card-body{
+    @apply py-4 p-4;
+}
+
+.card-title{
+    @apply text-xl text-gray-700 leading-5;
 }

@@ -13,14 +13,15 @@ trait CarTrait{
         $this->carro=session()->get('cart');
         //Si el carro esta vacio se agregar un nuevo producto
         if(isset($producto->image->url)){
-            $imagen='storage/'.$producto->image->url;
+            $imagen='/storage/'.$producto->image->url;
         }else{
-            $imagen="img/sinfoto.png";
+            $imagen="/img/sinfoto.png";
         }
 
         if(!$this->carro){
             $this->carro=[$producto->id=>[
                     "nombre"=>$producto->name,
+                    "completo"=>$producto->fullname,
                     "cantidad"=>1,
                     "precio"=>$producto->price_discount,
                     "imagen"=>$imagen,
@@ -34,6 +35,7 @@ trait CarTrait{
         }else{ //si el carro existe pero el producto no esta en el carro
             $this->carro[$producto->id] = [
                 "nombre" =>$producto->name,
+                "completo" =>$producto->fullname,
                 "cantidad"=>1,
                 "precio"=>$producto->price_discount,
                 "imagen"=>$imagen,

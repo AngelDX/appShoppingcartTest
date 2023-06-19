@@ -5,8 +5,10 @@ use App\Http\Livewire\Admin\RoleManagement;
 use App\Http\Livewire\Admin\UserManagement;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['middleware' => ['role:administrador']], function () {
+Route::group(['middleware' => ['role:Administrador']], function () {
+    Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
     Route::get('/categorias',CategoryCrud::class)->name('categories');
+    //Route::get('/categorias',CategoryCrud::class)->middleware('can:Listar categorias')->name('categories');
     Route::get('/roles',RoleManagement::class)->name('roles');
     Route::get('/users',UserManagement::class)->name('users');
 });

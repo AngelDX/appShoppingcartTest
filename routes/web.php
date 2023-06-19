@@ -5,6 +5,7 @@ use App\Http\Livewire\Admin\RoleManagement;
 use App\Http\Livewire\Admin\UserManagement;
 use App\Http\Livewire\Indexweb;
 use App\Http\Livewire\Web\Productshow;
+use App\Http\Livewire\Web\Userprofile;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,15 +25,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',Indexweb::class)->name('index');
 Route::get('/productos/{product}',Productshow::class)->name('product.show');
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-    //Route::get('/categorias',CategoryCrud::class)->name('categories');
+//Rutas para clientes
+Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
+    Route::get('/profile',Userprofile::class)->name('user.profile');
     //Route::get('/roles',RoleManagement::class)->name('roles');
     //Route::get('/users',UserManagement::class)->name('users');
 });

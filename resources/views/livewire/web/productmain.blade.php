@@ -20,11 +20,13 @@
     {{-- Cards productos categoria --}}
     <div>
         @auth
+        @can('Crear productos')
         <div class="mb-2 mr-5 relative">
             <button onclick="Livewire.emit('openModal', 'admin.product-create')" class="absolute right-2 top-[-60px] bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer" >
                 <i class="fa-solid fa-plus"></i> Agregar producto
             </button>
         </div>
+        @endcan
         @endauth
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
             @forelse ($products as $product)
@@ -46,8 +48,12 @@
                             </div>
                             @auth
                             <div class="absolute top-2 left-2">
+                                @can('Editar productos')
                                 <x-button onclick="Livewire.emit('openModal','admin.product-create',{{json_encode(['product'=>$product])}})"><i class="fas fa-edit"></i></x-jet-button>
+                                @endcan
+                                @can('Eliminar productos')
                                 <x-danger-button wire:click="$emit('deleteItem',{{$product->id}})"><i class="fas fa-trash"></i></x-jet-danger-button>
+                                @endcan
                             </div>
                             @endauth
                         </div>

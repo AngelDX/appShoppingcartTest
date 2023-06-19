@@ -39,9 +39,9 @@
         </div>
       </div>
       <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-        <div x-data="{open:false}" class="relative">
+        <div x-data="{open:false}" class="relative text-gray-300 hover:bg-gray-700 hover:text-white rounded-md pl-4 pr-8 py-2">
             <div x-on:click="open=!open" class="relative cursor-pointer">
-                <button type="button" class="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white">
+                <button type="button" class="text-gray-400 ">
                 <span class="sr-only">ShoppingCart</span>
                 <i class="fa-solid fa-cart-shopping text-2xl"></i>
                 </button>
@@ -54,13 +54,19 @@
             </div>
         </div>
 
-
         <!-- Profile dropdown -->
-        <div x-data="{open:false}" class="relative ml-16">
+        <div x-data="{open:false}" class="relative ml-8">
           <div>
-            <button x-on:click="open=!open" type="button" class="flex rounded-full bg-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+            <button x-on:click="open=!open" type="button" class="flex text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
               <span class="sr-only">Open user menu</span>
-              <i class="fa-solid fa-gear text-gray-400 text-2xl hover:text-white"></i>
+              <i class="fa-solid fa-user text-gray-400 text-2xl"></i>
+              <span class="text-gray-300 hover:bg-gray-700 rounded-md px-3 py-2 text-sm font-medium">
+                @auth
+                    {{ Auth::user()->name }}
+                @else
+                    Mi cuenta
+                @endauth
+              </span>
             </button>
           </div>
 
@@ -74,12 +80,40 @@
               From: "transform opacity-100 scale-100"
               To: "transform opacity-0 scale-95"
           -->
-          <div x-show="open" x-on:click.outside="open=false" class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+          <div x-show="open" x-on:click.outside="open=false" class="absolute right-0 z-10 w-52 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
             <!-- Active: "bg-gray-100", Not Active: "" -->
             @if (Route::has('login'))
                 @auth
-                    <a href="{{ url('/dashboard') }}" target="_blank" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Dashboard</a>
-                    @else
+                    <div class="text-center text-sm leading-4 font-medium rounded-t-md bg-indigo-500 py-2 text-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                        Bienvenido(a):<br/> {{ Auth::user()->name }}
+                    </div>
+                    <div class="border-t border-gray-200 dark:border-gray-600"></div>
+                    @can('Ver dashboard')
+                    <x-dropdown-link href="{{ route('admin.dashboard') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">
+                        Dashboard
+                    </x-dropdown-link>
+                    @endcan
+                    <div class="border-t border-gray-200 dark:border-gray-600"></div>
+                    <x-dropdown-link href="{{ route('user.profile') }}">
+                        {{ __('Profile') }}
+                    </x-dropdown-link>
+                    @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
+                        <x-dropdown-link href="{{ route('api-tokens.index') }}">
+                            {{ __('API Tokens') }}
+                        </x-dropdown-link>
+                    @endif
+
+                    <div class="border-t border-gray-200 dark:border-gray-600"></div>
+                    <!-- Authentication -->
+                    <form method="POST" action="{{ route('logout') }}" x-data>
+                        @csrf
+                        <x-dropdown-link href="{{ route('logout') }}"
+                                 @click.prevent="$root.submit();">
+                            {{ __('Log Out') }}
+                        </x-dropdown-link>
+                    </form>
+
+                @else
                     <a href="{{ route('login') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Login</a>
                     @if (Route::has('register'))
                         <a href="{{ route('register') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Register</a>

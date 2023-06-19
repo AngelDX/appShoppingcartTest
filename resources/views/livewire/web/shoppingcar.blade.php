@@ -52,11 +52,11 @@
                             <div>
                                 <div class="flex justify-between text-base font-medium text-gray-900">
                                     <h3 class="font-bold text-lg"><a href="#">{{$details['nombre']}}</a></h3>
-                                    <p class="ml-4">S/ {{ $details['precio'] }}</p>
+                                    <p class="ml-4">S/ {{$details['precio']}}</p>
                                 </div>
                                 <div class="flex justify-between text-base font-medium text-gray-900 mt-6">
                                     <p class="text-sm text-gray-500">Subtotal</p>
-                                    <p class="ml-4">S/ {{ $details['subtotal'] }}</p>
+                                    <p class="ml-4">S/ {{$details['subtotal']}}</p>
                                 </div>
 
                                 {{-- <p class="mt-1 text-sm text-gray-500">Blue</p> --}}
@@ -83,23 +83,22 @@
               </div>
 
               <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
-                <div class="flex justify-between text-base font-medium text-gray-900">
+                <div class="flex justify-between text-gray-900 text-xl font-bold">
                   <p>Total</p>
                   <p>S/  {{$totalImporte}}</p>
                 </div>
                 <p class="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
+                @if(session('cart'))
                 <div class="mt-6">
-                  <a href="login" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">
+                  <a href="{{route('payment.checkout')}}" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">
                     Ir a comprar</a>
+                @endif
                 </div>
-                <div class="mt-6 flex justify-center text-center text-sm text-gray-500">
-                  <p>
-                    or
+                <div class="mt-6 mb-4 flex justify-center text-center text-sm text-gray-500">
                     <button x-on:click="open=false" type="button" class="font-medium text-indigo-600 hover:text-indigo-500">
                       Continua comprando
                       <span aria-hidden="true"> &rarr;</span>
                     </button>
-                  </p>
                 </div>
               </div>
             </div>
