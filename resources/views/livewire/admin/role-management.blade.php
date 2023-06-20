@@ -16,12 +16,12 @@
             </div>
             <!--Boton nuevo   -->
             <div class="lg:ml-40 ml-10 space-x-8">
-                    <button wire:click="create()" class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer" >
-                        <i class="fa-solid fa-plus"></i></i> Nuevo
-                    </button>
-                    @if($isOpen)
-                        @include('livewire.admin.category-create')
-                    @endif
+                <button wire:click="create()" class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer" >
+                    <i class="fa-solid fa-plus"></i></i> Nuevo
+                </button>
+                @if($isOpen)
+                    @include('livewire.admin.role-create')
+                @endif
             </div>
         </div>
         <!--Tabla lista de items   -->
@@ -53,7 +53,7 @@
                                 </button>
                                 <div x-show="open" x-on:click.away="open=false" class="flex flex-wrap z-50 left-0 mt-1 bg-indigo-50 border rounded shadow-xl">
                                     @foreach ($role->permissions as $permission)
-                                        <span class="text-xs border-t-2 transition-colors duration-200 block px-4 py-2 text-gray-900 rounded hover:bg-indigo-200">
+                                        <span class="text-xs border-t-2 transition-colors duration-200 block px-2 py-2 text-gray-900 rounded hover:bg-indigo-200">
                                             {{$permission->name}}
                                         </span>
                                     @endforeach
@@ -67,7 +67,7 @@
                     </td>
                     <td class="px-6 py-4 text-right">
                     {{-- @livewire('cliente-edit',['cliente'=>$item],key($item->id)) --}}
-                    <x-button wire:click="edit({{$role}})"> <!-- Usamos metodos magicos -->
+                    <x-button wire:click="edit({{$role->id}})"> <!-- Usamos metodos magicos -->
                         <i class="fas fa-edit"></i>
                     </x-button>
                     <x-danger-button wire:click="$emit('deleteItem',{{$role->id}})"> <!-- Usamos metodos magicos -->
