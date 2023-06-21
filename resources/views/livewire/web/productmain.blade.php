@@ -1,6 +1,6 @@
 <div>
     {{-- Filtros categoria --}}
-    <div class="w-full mb-4">
+    <div class="w-full mb-4 dark:text-gray-400">
         <div class="text-center border-b-2 border-gris-200 py-2">
             <h3 class="uppercase font-bold text-lg mb-2">Categorías</h3>
             <ul class="flex justify-center gap-4">
@@ -30,7 +30,7 @@
         @endauth
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
             @forelse ($products as $product)
-            <div class="relative scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
+            <div class="relative scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl dark:text-gray-400 from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
                 <div>
                     <div class="absolute right-0 top-0 bg-red-600 text-white w-14 py-1 text-center rounded-tr-lg rounded-bl-lg">
                         -{{$product->discount}}%

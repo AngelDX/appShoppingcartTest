@@ -3,7 +3,7 @@
 }
 
 .card-body{
-    @apply py-4 p-4;
+    @apply py-4 p-4 dark:bg-gray-800/50 dark:bg-gradient-to-bl;
 }
 
 .card-title{
