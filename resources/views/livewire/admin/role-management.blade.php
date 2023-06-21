@@ -5,7 +5,6 @@
         </h2>
     </x-slot>
     <x-card-main>
-        {{$usuario}}
         <div class="flex items-center justify-between">
             <!--Input de busqueda   -->
             <div class="flex items-center p-2 rounded-md flex-1">
@@ -88,4 +87,31 @@
         </div>
         @endif
     </x-card-main>
+    <!--Scripts - Sweetalert   -->
+    @push('js')
+    <script>
+      Livewire.on('deleteItem',id=>{
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                //alert(id);
+                Livewire.emitTo('admin.role-management','delete',id);
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
+
+            }
+          })
+      });
+    </script>
+    @endpush
 </div>

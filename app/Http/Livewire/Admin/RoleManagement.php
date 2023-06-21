@@ -2,13 +2,16 @@
 
 namespace App\Http\Livewire\Admin;
 
+use Illuminate\Support\Arr;
 use Livewire\Component;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RoleManagement extends Component{
     public $isOpen=false;
-    public $usuario,$rolname,$rolpermissions;
+    public $role,$rolname,$rolpermissions;
+    protected $listeners=['render','delete'=>'delete'];
+
     public function render(){
         $roles=Role::paginate();
         $permissions=Permission::all();
@@ -24,10 +27,37 @@ class RoleManagement extends Component{
     public function edit($id){
         $this->resetValidation();
         $this->isOpen=true;
-        $role=Role::find($id);
-        $this->rolname=$role->name;
-        //$this->rolpermissions=$role->permissions->pluck('id');
-        $this->rolpermissions=[true,false,false];
+        $this->role=Role::find($id);
+        $this->rolname=$this->role->name;
+        //$this->rolpermissions=[1=>true,2=>false,3=>true,13=>true];
+        $this->rolpermissions=array_fill_keys($this->role->permissions->pluck('id')->toArray(), true);
+    }
+
+    public function store(){
+        $this->validate([
+            'rolname'=>'required'
+        ]);
+        if(!isset($this->role['id'])){
+            $role=Role::create([
+                'name'=>$this->rolname
+            ]);
+            $role->permissions()->attach(array_keys($this->rolpermissions,'true'));
+        }else{
+            //dd(array_keys($this->rolpermissions));
+            $role=Role::find($this->role['id']);
+            $role->name=$this->rolname;
+            $role->save();
+            $role->permissions()->sync(array_keys($this->rolpermissions,'true'));
+        }
+
+        $this->reset(['isOpen','rolname','rolpermissions']);
+        $this->emitTo('RoleManagement','render');
+        $this->emit('alert','Registro creado satisfactoriamente');
+    }
+
+    public function delete($id){
+        $company=Role::find($id);
+        $company->delete();
     }
 
 }

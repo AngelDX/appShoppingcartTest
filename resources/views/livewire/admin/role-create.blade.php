@@ -15,7 +15,7 @@
             <div class="mb-2 md:mr-2 md:mb-0 w-full">
               <x-label value="Permisos" class="font-bold"/>
               <div class="grid grid-cols-3">
-                {{json_encode($rolpermissions)}}
+                {{-- {{json_encode($rolpermissions)}} --}}
                 @foreach ($permissions as $permission)
                 <label>
                     <x-checkbox wire:model="rolpermissions.{{$permission->id}}"></x-checkbox>
