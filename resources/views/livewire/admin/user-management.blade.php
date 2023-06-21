@@ -31,6 +31,8 @@
                   <td scope="col" class="px-6 py-3">ID</td>
                   <td scope="col" class="px-6 py-3">Nombre</td>
                   <td scope="col" class="px-6 py-3">Email</td>
+                  <td scope="col" class="px-6 py-3">Documento</td>
+                  <td scope="col" class="px-6 py-3">Celular</td>
                   <td scope="col" class="px-6 py-3">Rol</td>
                   <td scope="col" class="px-6 py-3">Opciones</td>
                 </tr>
@@ -45,6 +47,8 @@
                   </td>
                   <td class="px-6 py-4">{{$user->name}}</td>
                   <td class="px-6 py-4">{{$user->email}}</td>
+                  <td class="px-6 py-4">{{$user->document}}</td>
+                  <td class="px-6 py-4">{{$user->cellphone}}</td>
                   <td class="px-6 py-4">
                     @if (!empty($user->getRoleNames()))
                         @foreach ($user->getRoleNames() as $rol)
@@ -56,7 +60,7 @@
                   </td>
                   <td class="px-6 py-4 text-right">
                     {{-- @livewire('cliente-edit',['cliente'=>$item],key($item->id)) --}}
-                    <x-button wire:click="edit({{$user}})"> <!-- Usamos metodos magicos -->
+                    <x-button wire:click="edit({{$user->id}})"> <!-- Usamos metodos magicos -->
                         <i class="fas fa-edit"></i>
                     </x-button>
                     <x-danger-button wire:click="$emit('deleteItem',{{$user->id}})"> <!-- Usamos metodos magicos -->

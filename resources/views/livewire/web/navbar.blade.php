@@ -84,7 +84,7 @@
             <!-- Active: "bg-gray-100", Not Active: "" -->
             @if (Route::has('login'))
                 @auth
-                    <div class="text-center text-sm leading-4 font-medium rounded-t-md bg-indigo-500 py-2 text-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                    <div class="text-center text-sm leading-4 font-medium rounded-t-md bg-gray-500 py-2 text-gray-50 dark:text-gray-400 dark:bg-gray-800">
                         Bienvenido(a):<br/> {{ Auth::user()->name }}
                     </div>
                     <div class="border-t border-gray-200 dark:border-gray-600"></div>
