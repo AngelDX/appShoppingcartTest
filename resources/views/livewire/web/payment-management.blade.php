@@ -59,7 +59,7 @@
                     <div class="text-xl font-bold">S/. {{$totalImporte}}</div>
                 </div>
                 <div class="pt-4">
-                    <button class="bg-indigo-600 text-white w-full rounded-full py-2 font-bold text-lg">
+                    <button class="bg-indigo-600 text-white w-full rounded-full py-2 font-bold text-lg hover:bg-indigo-500">
                         Pagar ({{$totalCart}})
                     </button>
                 </div>

@@ -14,15 +14,17 @@
                     <x-input type="text" wire:model="search" class="w-full block pl-14" placeholder="Buscar equipo..."/>
                 </label>
             </div>
+            @can('Listar categorias')
             <!--Boton nuevo   -->
             <div class="lg:ml-40 ml-10 space-x-8">
-                    <button wire:click="create()" class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer" >
-                        <i class="fa-solid fa-plus"></i></i> Nuevo
-                    </button>
-                    @if($isOpen)
-                        @include('livewire.admin.category-create')
-                    @endif
+                <button wire:click="create()" class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer" >
+                    <i class="fa-solid fa-plus"></i></i> Nuevo
+                </button>
+                @if($isOpen)
+                    @include('livewire.admin.category-create')
+                @endif
             </div>
+            @endcan
         </div>
         <!--Tabla lista de items   -->
         <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -31,7 +33,7 @@
                 <tr class="text-left text-xs font-bold  uppercase">
                   <td scope="col" class="px-6 py-3">ID</td>
                   <td scope="col" class="px-6 py-3">Nombre categoría</td>
-                  <td scope="col" class="px-6 py-3">Opciones</td>
+                  <td scope="col" class="px-6 py-3 text-center">Opciones</td>
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-200 dark:text-gray-400">
@@ -44,13 +46,16 @@
                   </td>
                   <td class="px-6 py-4 dark:text-gray-400">{{$item->name}}</td>
                   <td class="px-6 py-4 text-right">
-                    {{-- @livewire('cliente-edit',['cliente'=>$item],key($item->id)) --}}
+                    @can('Editar categorias')
                     <x-button wire:click="edit({{$item}})"> <!-- Usamos metodos magicos -->
                         <i class="fas fa-edit"></i>
                     </x-button>
+                    @endcan
+                    @can('Eliminar categorias')
                     <x-danger-button wire:click="$emit('deleteItem',{{$item->id}})"> <!-- Usamos metodos magicos -->
                         <i class="fas fa-trash"></i>
                     </x-danger-button>
+                    @endcan
                   </td>
                 </tr>
                 @endforeach
