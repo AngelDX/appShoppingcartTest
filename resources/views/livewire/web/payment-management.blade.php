@@ -18,9 +18,11 @@
                                     <div class="flex justify-between">
                                         <p class="text-gray-900 font-bold text-lg">S/. {{$details['precio']}}</p>
                                         <div class="flex gap-3">
-                                            <div class="bg-gray-200 rounded-full w-7 text-center">+</div>
+                                            <div wire:click="aumentarProducto({{$id}})" class="flex justify-center items-center bg-gray-200 rounded-full w-7  cursor-pointer">
+                                                +</div>
                                             <p>{{$details['cantidad']}}</p>
-                                            <div class="bg-gray-200 rounded-full w-7 text-center">-</div>
+                                            <div wire:click="disminuirProducto({{$id}})" class="flex justify-center items-center bg-gray-200 rounded-full w-7 text-center cursor-pointer">
+                                                -</div>
                                         </div>
 
                                     </div>
@@ -58,7 +60,7 @@
                 </div>
                 <div class="pt-4">
                     <button class="bg-indigo-600 text-white w-full rounded-full py-2 font-bold text-lg">
-                        Pagar (3)
+                        Pagar ({{$totalCart}})
                     </button>
                 </div>
                 </article>

@@ -9,11 +9,11 @@ use Spatie\Permission\Models\Role;
 
 class RoleManagement extends Component{
     public $isOpen=false;
-    public $role,$rolname,$rolpermissions;
+    public $role,$rolname,$rolpermissions,$search;
     protected $listeners=['render','delete'=>'delete'];
 
     public function render(){
-        $roles=Role::paginate();
+        $roles=Role::where('name','like','%'.$this->search.'%')->paginate();
         $permissions=Permission::all();
         return view('livewire.admin.role-management',compact('roles','permissions'));
     }
@@ -43,7 +43,6 @@ class RoleManagement extends Component{
             ]);
             $role->permissions()->attach(array_keys($this->rolpermissions,'true'));
         }else{
-            //dd(array_keys($this->rolpermissions));
             $role=Role::find($this->role['id']);
             $role->name=$this->rolname;
             $role->save();

@@ -12,11 +12,11 @@ class UserManagement extends Component{
 
     public $isOpen=false;
     public $user,$selectroles;
-    public $name,$email,$password,$document,$cellphone,$address,$password_confirmation;
+    public $name,$email,$password,$document,$cellphone,$address,$password_confirmation,$search;
     protected $listeners=['render','delete'=>'delete'];
 
     public function render(){
-        $users=User::paginate();
+        $users=User::where('name','like','%'.$this->search.'%')->paginate();
         $roles=Role::all();
         return view('livewire.admin.user-management',compact('users','roles'));
     }
@@ -28,14 +28,25 @@ class UserManagement extends Component{
     }
 
     public function store(){
-        $this->validate([
-            'name'=>['required', 'string', 'max:255'],
-            'email'=>['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password'=>'required|confirmed|min:4',
-            'document'=>['required','unique:users'],
-            'cellphone'=>'required',
-            'address'=>'required',
-        ]);
+        if(!isset($this->user['id'])){
+            $rules=[
+                'name'=>['required', 'string', 'max:255'],
+                'email'=>['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password'=>'required|confirmed|min:4',
+                'document'=>['required','unique:users'],
+                'cellphone'=>'required',
+                'address'=>'required',
+            ];
+        }else{
+            $rules=[
+                'name'=>['required', 'string', 'max:255'],
+                'email'=>['required', 'string', 'email', 'max:255'],
+                'document'=>['required'],
+                'cellphone'=>'required',
+                'address'=>'required',
+            ];
+        }
+        $this->validate($rules);
         if(!isset($this->user['id'])){
             $user=User::create([
                 'name' => $this->name,
@@ -57,7 +68,7 @@ class UserManagement extends Component{
             $user->roles()->sync(array_keys($this->selectroles,'true'));
         }
 
-        $this->reset(['isOpen','name','email','password','document','cellphone','address']);
+        $this->reset(['isOpen','name','email','password','document','cellphone','address','user']);
         $this->emitTo('UserManagement','render');
         $this->emit('alert','Registro creado satisfactoriamente');
 
@@ -74,5 +85,10 @@ class UserManagement extends Component{
         $this->address=$user->address;
         $this->user['id']=$user->id;
         $this->selectroles=array_fill_keys($user->roles->pluck('id')->toArray(), true);
+    }
+
+    public function delete($id){
+        $user=User::find($id);
+        $user->delete();
     }
 }

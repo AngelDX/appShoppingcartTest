@@ -24,7 +24,7 @@
                                 {{ __('Permisos') }}
                             <i class="fas fa-angle-down text-sm"></i>
                         </div>
-                        <div x-show="open" x-on:click.away="open=false" class="absolute right-0 w-38 mt-28 bg-white border rounded shadow-xl">
+                        <div x-show="open" x-on:click.away="open=false" class="absolute right-0 w-38 mt-28 bg-white dark:bg-gray-400 border rounded shadow-xl">
                             <a href="{{ route('admin.roles') }}" x-on:click="open=false" class="text-sm border-t-2 transition-colors duration-200 block px-4 py-2 text-gray-900 rounded hover:bg-indigo-200 cursor-pointer">
                                 Roles
                             </a>

@@ -35,7 +35,4 @@ class Shoppingcar extends Component{
         $this->totalImporteCart();
     }
 
-    // public function actulizarTotalImporte(){
-    //     $this->totalImporte=$this->totalImporte();
-    // }
 }
