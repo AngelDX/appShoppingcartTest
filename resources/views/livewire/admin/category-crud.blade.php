@@ -14,7 +14,7 @@
                     <x-input type="text" wire:model="search" class="w-full block pl-14" placeholder="Buscar equipo..."/>
                 </label>
             </div>
-            @can('Listar categorias')
+            @can('Crear categorias')
             <!--Boton nuevo   -->
             <div class="lg:ml-40 ml-10 space-x-8">
                 <button wire:click="create()" class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer" >

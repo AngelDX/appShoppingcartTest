@@ -18,6 +18,7 @@
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     {{-- dropdown permisos --}}
+                    {{-- @can('Listar clientes') --}}
                     <x-nav-link-down x-data="{ open:false }" :active="request()->routeIs('roles') || request()->routeIs('users')">
                         <div x-on:click="open=true">
                             <i class="fa-solid fa-unlock-keyhole"></i>
@@ -33,6 +34,7 @@
                             </a>
                         </div>
                     </x-nav-link-down>
+                    {{-- @endcan --}}
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="{{ route('admin.categories') }}" :active="request()->routeIs('categories')">
