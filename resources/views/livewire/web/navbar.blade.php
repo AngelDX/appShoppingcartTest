@@ -125,6 +125,12 @@
       </div>
     </div>
   </div>
+  <div class="max-w-7xl m-auto">
+    <div class="flex gap-4 w-96 justify-center rounded-b-2xl bg-indigo-800 text-gray-300 ml-8">
+        <p><i class="fa-regular fa-envelope"></i> juliacasoft@gmail.com</p>
+        <p><i class="fa-brands fa-whatsapp"></i> +51 950062125</p>
+    </div>
+  </div>
 
   <!-- Mobile menu, show/hide based on menu state. -->
   <div x-show="open" x-on:click.outside="open=false" class="sm:hidden" id="mobile-menu">
@@ -136,5 +142,7 @@
       <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Calendar</a>
     </div>
   </div>
+
+
 </nav>
 

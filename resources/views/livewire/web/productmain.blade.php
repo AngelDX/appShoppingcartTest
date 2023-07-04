@@ -32,9 +32,11 @@
             @forelse ($products as $product)
             <div class="relative scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl dark:text-gray-400 from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
                 <div>
+                    @if($product->discount>0)
                     <div class="absolute right-0 top-0 bg-red-600 text-white w-14 py-1 text-center rounded-tr-lg rounded-bl-lg">
                         -{{$product->discount}}%
                     </div>
+                    @endif
                     <div class="grid lg:grid-cols-2 gap-4">
                         <a href="{{ route('product.show',$product) }}" class="w-full object-cover">
                             <img src="@if($product->image){{Storage::url($product->image->url)}}@else img/sinfoto.png @endif">
@@ -43,7 +45,9 @@
                             <h2 class="text-xl font-semibold text-gray-900 dark:text-white">{{$product->name}}</h2>
                             <h3 class="mt-2 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">{{$product->fullname}}</h3>
                             <div class="mt-4">
+                                @if($product->discount>0)
                                 <p class="line-through text-sm">S/ {{$product->price}}</p>
+                                @endif
                                 <p class="font-bold">S/ {{number_format($product->price-(($product->discount/100)*$product->price),2)}}</p>
                             </div>
                             @auth
