@@ -1,4 +1,10 @@
 <nav x-data="{open:false}" class="bg-gray-800">
+    <div class="max-w-7xl m-auto">
+        <div class="flex gap-4 w-96 justify-center rounded-b-2xl bg-indigo-700 text-gray-300 ml-8">
+            <p><i class="fa-regular fa-envelope"></i> juliacasoft@gmail.com</p>
+            <p><i class="fa-brands fa-whatsapp"></i> +51 950062125</p>
+        </div>
+    </div>
   <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
     <div class="relative flex h-16 items-center justify-between">
       <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -57,10 +63,10 @@
         <!-- Profile dropdown -->
         <div x-data="{open:false}" class="relative ml-8">
           <div>
-            <button x-on:click="open=!open" type="button" class="flex text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+            <button  type="button" class="flex text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
               <span class="sr-only">Open user menu</span>
               <i class="fa-solid fa-user text-gray-400 text-2xl"></i>
-              <span class="text-gray-300 hover:bg-gray-700 rounded-md px-3 py-2 text-sm font-medium">
+              <span x-on:click="open=!open" class="text-gray-300 hover:bg-gray-700 rounded-md px-3 py-2 text-sm font-medium">
                 @auth
                     {{ Auth::user()->name }}
                 @else
@@ -84,9 +90,9 @@
             <!-- Active: "bg-gray-100", Not Active: "" -->
             @if (Route::has('login'))
                 @auth
-                    <div class="text-center text-sm leading-4 font-medium rounded-t-md bg-gray-500 py-2 text-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                    {{-- <div class="text-center text-sm leading-4 font-medium rounded-t-md bg-gray-500 py-2 text-gray-50 dark:text-gray-400 dark:bg-gray-800">
                         Bienvenido(a):<br/> {{ Auth::user()->name }}
-                    </div>
+                    </div> --}}
                     <div class="border-t border-gray-200 dark:border-gray-600"></div>
                     @can('Ver dashboard')
                     <x-dropdown-link href="{{ route('admin.dashboard') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">
@@ -123,12 +129,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="max-w-7xl m-auto">
-    <div class="flex gap-4 w-96 justify-center rounded-b-2xl bg-indigo-800 text-gray-300 ml-8">
-        <p><i class="fa-regular fa-envelope"></i> juliacasoft@gmail.com</p>
-        <p><i class="fa-brands fa-whatsapp"></i> +51 950062125</p>
     </div>
   </div>
 

@@ -11,9 +11,12 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" /> --}}
          <!-- Scripts -->
-         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+         {{-- <link rel="stylesheet" href="build/assets/angeldx-9bff9eec.css">
+         <link rel="stylesheet" href="build/assets/app-10b39032.css">
+         <link rel="stylesheet" href="build/assets/app-48a96618.css">
+         <script src="build/assets/app-0627d69a.js"></script> --}}
          <!-- Styles -->
          @livewireStyles
          <script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
